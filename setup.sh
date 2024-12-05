@@ -48,7 +48,7 @@ if [ "$choice" -gt 0 ] && [ "$choice" -le "$exit_option" ]; then
         exit 0
     fi
     selected_script=$(echo "$scripts" | sed -n "${choice}p")
-    echo "Running $selected_script..."
+    # echo "Running $selected_script..."
     sh "$selected_script"
 else
     echo "Invalid selection. Exiting."

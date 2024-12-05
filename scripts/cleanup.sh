@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 read -p "Do you really want to do this? This action cannot be undone. (yes/no or y/n): " confirm
 
-if [[ "$confirm" != "yes" && "$confirm" != "y" ]]; then
+if [ "$confirm" != "yes" ] && [ "$confirm" != "y" ]; then
     echo "Operation cancelled."
     exit 1
 fi
