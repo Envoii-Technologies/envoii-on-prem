@@ -20,9 +20,7 @@ printf "%*s\n" $(((${#subtitle2} + cols) / 2)) "$subtitle2"
 printf "%*s\n\n\n" $(((${#subtitle3} + cols) / 2)) "$subtitle3"
 printf "%*s\n\n\n" $(((${#welcome} + cols) / 2)) "$welcome"
 
-echo ""
-
-echo "If the setup has not been run before, please run the 'init' script first."
+echo "If the setup has not been run before, please run the 'init' script first.\n"
 
 # List available scripts
 scripts=$(ls "$SCRIPTS_DIR"/*.sh)
@@ -35,14 +33,14 @@ done
 echo "Please select a script to run:"
 i=1
 for script_name in $script_names; do
-    echo "$i) $script_name"
+    echo "\t$i) $script_name"
     i=$((i+1))
 done
 exit_option=$((i))
-echo "$exit_option) exit"
+echo "\t$exit_option) exit"
 
 # Read user input
-echo "Enter the number of the script to run: "
+echo "\nEnter the number of the script to run: "
 read choice
 
 # Validate input and run the selected script
