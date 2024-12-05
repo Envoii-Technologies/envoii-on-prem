@@ -7,7 +7,7 @@ clear
 
 # Center the text
 cols=$(tput cols)
-title="                                 _)  _)"
+title="\n                                 _)  _)"
 subtitle1="   _ \   __ \   \ \   /    _ \    |   |"
 subtitle2="   __/   |   |   \ \ /    (   |   |   |"
 subtitle3=" \___|  _|  _|    \_/    \___/   _|  _|"
