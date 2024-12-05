@@ -10,7 +10,12 @@ fi
 echo "Proceeding with the cleanup..."
 
 # Stop all running containers
-docker stop $(docker ps -q)
+running_containers=$(docker ps -q)
+if [ -n "$running_containers" ]; then
+    docker stop $running_containers
+else
+    echo "No running containers to stop."
+fi
 
 # Remove all containers
 containers=$(docker ps -a -q)
