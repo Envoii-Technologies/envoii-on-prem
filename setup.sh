@@ -14,7 +14,7 @@ subtitle3=" \___|  _|  _|    \_/    \___/   _|  _|"
 welcome="Welcome to the envoii application platform setup, please select a script to run."
 
 # Print the centered title and subtitles
-printf "%\n*s\n\n" $(((${#title} + cols) / 2)) "$title"
+printf "\n%*s\n\n" $(((${#title} + cols) / 2)) "$title"
 printf "%*s\n" $(((${#subtitle1} + cols) / 2)) "$subtitle1"
 printf "%*s\n" $(((${#subtitle2} + cols) / 2)) "$subtitle2"
 printf "%*s\n\n\n" $(((${#subtitle3} + cols) / 2)) "$subtitle3"
