@@ -20,6 +20,10 @@ printf "%*s\n" $(((${#subtitle2} + cols) / 2)) "$subtitle2"
 printf "%*s\n\n\n" $(((${#subtitle3} + cols) / 2)) "$subtitle3"
 printf "%*s\n\n\n" $(((${#welcome} + cols) / 2)) "$welcome"
 
+echo ""
+
+echo "If the setup has not been run before, please run the 'init' script first."
+
 # List available scripts
 scripts=$(ls "$SCRIPTS_DIR"/*.sh)
 script_names=""
