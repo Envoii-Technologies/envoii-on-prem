@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 SCRIPTS_DIR="/Users/envoii/Desktop/envoii-on-prem/scripts"
 
@@ -13,37 +13,43 @@ subtitle2="   __/   |   |   \ \ /    (   |   |   |"
 subtitle3=" \___|  _|  _|    \_/    \___/   _|  _|"
 welcome="Welcome to the envoii application platform setup, please select a script to run."
 
-printf "%*s\n" $(((${#title}+$cols)/2)) "$title"
-printf "%*s\n" $(((${#subtitle1}+$cols)/2)) "$subtitle1"
-printf "%*s\n" $(((${#subtitle2}+$cols)/2)) "$subtitle2"
-printf "%*s\n\n\n" $(((${#subtitle3}+$cols)/2)) "$subtitle3"
-printf "%*s\n\n\n" $(((${#welcome}+$cols)/2)) "$welcome"
+# Print the centered title and subtitles
+printf "%*s\n" $(((${#title} + cols) / 2)) "$title"
+printf "%*s\n" $(((${#subtitle1} + cols) / 2)) "$subtitle1"
+printf "%*s\n" $(((${#subtitle2} + cols) / 2)) "$subtitle2"
+printf "%*s\n\n\n" $(((${#subtitle3} + cols) / 2)) "$subtitle3"
+printf "%*s\n\n\n" $(((${#welcome} + cols) / 2)) "$welcome"
 
 # List available scripts
-scripts=("$SCRIPTS_DIR"/*.sh)
-script_names=()
-for script in "${scripts[@]}"; do
-    script_names+=("$(basename "$script" .sh)")
+scripts=$(ls "$SCRIPTS_DIR"/*.sh)
+script_names=""
+for script in $scripts; do
+    script_names="$script_names $(basename "$script" .sh)"
 done
 
 # Display options
 echo "Please select a script to run:"
-for i in "${!script_names[@]}"; do
-    echo "$((i+1))) ${script_names[$i]}"
+i=1
+for script_name in $script_names; do
+    echo "$i) $script_name"
+    i=$((i+1))
 done
-echo "$(( ${#script_names[@]} + 1 ))) Exit"
+exit_option=$((i))
+echo "$exit_option) Exit"
 
 # Read user input
-read -p "Enter the number of the script to run: " choice
+echo "Enter the number of the script to run: "
+read choice
 
 # Validate input and run the selected script
-if [[ "$choice" -gt 0 && "$choice" -le "${#script_names[@]}" ]]; then
-    selected_script="${scripts[$((choice-1))]}"
+if [ "$choice" -gt 0 ] && [ "$choice" -le "$exit_option" ]; then
+    if [ "$choice" -eq "$exit_option" ]; then
+        echo "Exiting."
+        exit 0
+    fi
+    selected_script=$(echo "$scripts" | sed -n "${choice}p")
     echo "Running $selected_script..."
-    bash "$selected_script"
-elif [[ "$choice" -eq $(( ${#script_names[@]} + 1 )) ]]; then
-    echo "Exiting."
-    exit 0
+    sh "$selected_script"
 else
     echo "Invalid selection. Exiting."
     exit 1
