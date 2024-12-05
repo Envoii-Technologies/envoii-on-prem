@@ -10,7 +10,7 @@ fi
 echo "Initializing platform..."
 
 if [ -f .env ]; then
-    . .env
+    . ./.env
 else
     echo ".env file not found. Please create a .env file."
     exit 1
