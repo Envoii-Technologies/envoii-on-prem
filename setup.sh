@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCRIPTS_DIR="/Users/envoii/Desktop/envoii-on-prem/scripts"
+SCRIPTS_DIR="$(dirname "$0")/scripts"
 
 # Clear the terminal screen
 clear
