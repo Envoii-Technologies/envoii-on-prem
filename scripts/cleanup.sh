@@ -13,28 +13,36 @@ echo "Proceeding with the cleanup..."
 docker stop $(docker ps -q)
 
 # Remove all containers
-if ! docker rm $(docker ps -a -q); then
+containers=$(docker ps -a -q)
+if [ -n "$containers" ]; then
+    docker rm $containers
+else
     echo "No containers found for deletion."
 fi
-docker rm $(docker ps -a -q)
 
 # Remove all images
-docker rmi $(docker images -q); then
+images=$(docker images -q)
+if [ -n "$images" ]; then
+    docker rmi $images
+else
     echo "No images found for deletion."
 fi
-docker rmi $(docker images -q)
 
 # Remove all volumes
-docker volume rm $(docker volume ls -q); then
+volumes=$(docker volume ls -q)
+if [ -n "$volumes" ]; then
+    docker volume rm $volumes
+else
     echo "No volumes found for deletion."
 fi
-docker volume rm $(docker volume ls -q)
 
 # Remove all networks
-docker network rm $(docker network ls -q); then
+networks=$(docker network ls -q)
+if [ -n "$networks" ]; then
+    docker network rm $networks
+else
     echo "No networks found for deletion."
 fi
-docker network rm $(docker network ls -q)
 
 # Prune the system to remove unused data
 docker system prune -a -f --volumes
