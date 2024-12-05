@@ -42,7 +42,7 @@ else
 fi
 
 # Remove all networks
-networks=$(docker network ls -q)
+networks=$(docker network ls -q | grep -vE 'bridge|host|none')
 if [ -n "$networks" ]; then
     docker network rm $networks
 else
