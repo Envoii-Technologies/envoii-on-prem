@@ -9,6 +9,15 @@ fi
 
 echo "Proceeding with the cleanup..."
 
+# Delete .env file if it exists
+env_file="./.env"
+if [ -f "$env_file" ]; then
+    rm "$env_file"
+    echo ".env file deleted."
+else
+    echo ".env file not found."
+fi
+
 # Stop all running containers
 running_containers=$(docker ps -q)
 if [ -n "$running_containers" ]; then
