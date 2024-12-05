@@ -1,27 +1,27 @@
 services:
-    mongodb:
-      image: mongo
-      networks:
-        - envoii
-
-    postgres:
-      image: postgres
-      environment:
-        POSTGRES_PASSWORD: example
-      networks:
-        - envoii
-
-    s3:
-      image: minio/minio
-      command: server /data
-      environment:
-        MINIO_ACCESS_KEY: minio
-        MINIO_SECRET_KEY: minio123
-      ports:
-        - "9000:9000"
-      networks:
-        - envoii
-
+  mongodb:
+    image: mongo
     networks:
-      envoii:
-        driver: bridge
+      - envoii
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: example
+    networks:
+      - envoii
+
+  s3:
+    image: minio/minio
+    command: server /data
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    ports:
+      - "9000:9000"
+    networks:
+      - envoii
+
+  networks:
+    envoii:
+      driver: bridge
