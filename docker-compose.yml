@@ -1,18 +1,18 @@
 services:
   mongodb:
-    image: mongo
+    image: mongo:${MONGODB_VERSION}
     networks:
       - envoii
 
   postgres:
-    image: postgres
+    image: postgres:${POSTGRES_VERSION}
     environment:
       POSTGRES_PASSWORD: example
     networks:
       - envoii
 
   s3:
-    image: minio/minio
+    image: minio/minio:${MINIO_VERSION}
     command: server /data
     environment:
       MINIO_ACCESS_KEY: minio
