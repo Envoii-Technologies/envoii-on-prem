@@ -35,7 +35,7 @@ for script_name in $script_names; do
     i=$((i+1))
 done
 exit_option=$((i))
-echo "$exit_option) Exit"
+echo "$exit_option) exit"
 
 # Read user input
 echo "Enter the number of the script to run: "
