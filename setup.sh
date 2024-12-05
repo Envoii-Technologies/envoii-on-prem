@@ -22,9 +22,9 @@ printf "%*s\n\n\n" $(((${#welcome}+$cols)/2)) "$welcome"
 # List available scripts
 scripts=("$SCRIPTS_DIR"/*.sh)
 script_names=()
-for script in "${scripts[@]}"; {
+for script in "${scripts[@]}"; do
     script_names+=("$(basename "$script" .sh)")
-}
+done
 
 # Display options
 echo "Please select a script to run:"
